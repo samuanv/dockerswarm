@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: login API service
+  description: API that allows to login and register users. It returns a JWT that the user must send to other services
+paths:
+  '/login':
+    post:
+      summary: 'login request'
+      requestBody:
+         description: Login
+         required: true
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '200':
+          description: Successfull operation
+        '400':
+          description: The credentials are not valid
+  '/register':
+    post:
+      summary: 'register request'
+      requestBody:
+         description: Login
+         required: true
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '200':
+          description: Successfull operation
+        '409':
+          description: Not completed, because the user already exists
+components:
+  schemas:
+    Usuario:
+      title: Info about the user
+      type: object
+      properties:
+        user:
+          type: string
+          description: username
+        password:
+          type: string
+          description: password
+      required:
+        - user
+        - password
