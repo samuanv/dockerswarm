@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: counters API service
+  description: >-
+    API that allows to increment, decrement or get different values that are
+    stored in Redis
+paths:
+  '/get/{key}':
+    get:
+      summary: 'Get the value associated to a key. The value is created if it does not exists'
+      parameters:
+        - in: path
+          name: key
+          description: Key to increment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfull operation
+  '/increment/{key}':
+    get:
+      summary: >-
+        Increment the value associated to the key. The value is created if it
+        does not exists
+      parameters:
+        - in: path
+          name: key
+          description: Key to increment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfull operation
+  '/decrement/{key}':
+    get:
+      summary: >-
+        Decrements the value associated to the key. The value is created if it
+        does not exists
+      parameters:
+        - in: path
+          name: key
+          description: Key to decrement
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Succesfull operation

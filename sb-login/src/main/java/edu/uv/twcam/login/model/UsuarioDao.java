@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 @Transactional
 public interface UsuarioDao extends CrudRepository<Usuario,String>{
-    public Usuario findByUser(String username);
+   public Usuario findByUser(String username);
 }

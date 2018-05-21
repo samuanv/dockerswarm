@@ -11,17 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 class BeanConfig{                
-    private final Logger log = LoggerFactory.getLogger(BeanConfig.class);        
+   private final Logger log = LoggerFactory.getLogger(BeanConfig.class);        
 
-    @Bean 
-    public Gson gson(){
-        log.debug("Gson instance requested");
-        return new GsonBuilder().create();
-    }
+   @Bean 
+   public Gson gson(){
+      log.debug("Gson instance requested");
+      return new GsonBuilder().create();
+   }
 
-	@Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        log.debug("BCryptPasswordEncoder instance requested");
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public BCryptPasswordEncoder bCryptPasswordEncoder() {
+      log.debug("BCryptPasswordEncoder instance requested");
+      return new BCryptPasswordEncoder();
+   }
 }
