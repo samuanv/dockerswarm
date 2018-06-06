@@ -28,6 +28,10 @@ Endpoints:
 - POST /photo (multipart)
 - GET /photo
 
+PhotoDTO: 
+## MongoDB
+MongoDB service
+
 ## MySQL service (Dockerized) 3306
 MySQL service running on port 3306.
 
@@ -37,9 +41,6 @@ Redis service running on port 6379.
 
 ## Swift service (Dockerized) 8083
 Swift service running on port 8083
-`docker pull twcammaster.uv.es/swift:latest`
-`docker network create swift`
 `docker run -d -p 8083:8080 -v swift:/srv/node twcammaster.uv.es/swift`
+Ocata Cli:
 `docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\openstack:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
-Inside ocata-cli container:
-`export ST_USER=test:tester export ST_KEY=testing export ST_AUTH=http://<ip-swift-containter>:8080/auth/v1.0`

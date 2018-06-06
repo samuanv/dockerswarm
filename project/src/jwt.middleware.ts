@@ -12,10 +12,11 @@ export class JWT implements NestMiddleware {
         req.headers.authorization.split(' ')[0] === 'Bearer'
       ) {
         const token = req.headers.authorization.split(' ')[1];
+
         jwt.verify(token, process.env.SECRET_TOKEN, (err, payload) => {
           if (!err) {
             // confirm identity and check user permissions
-            req.body = payload.user;
+            req.user = payload.user;
             next();
           } else {
             return res.status(403).json(err);

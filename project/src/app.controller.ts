@@ -7,13 +7,14 @@ import {
   FileInterceptor,
   UploadedFile,
   Res,
+  Req,
   Param,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Photo } from 'photos/photo.interface';
 import { CreatePhotoDto } from 'photos/create-photo.dto';
 import { MulterOptions } from '@nestjs/common/interfaces/external/multer-options.interface';
-
+import * as rimraf from 'rimraf';
 const options: MulterOptions = {
   limits: {
     fieldSize: 1024 * 1024 * 1024 * 1024 * 1024,
@@ -35,12 +36,16 @@ export class AppController {
     // SetTimeout because of problem returning stream. can't wait to stream for finish
     setTimeout(() => {
       res.sendFile(__dirname + `/downloads/${photo._id}.${photo.mimetype.split('/')[1]}`);
+
+      // Remove aux files created in downloads folder
+      rimraf(__dirname + '/downloads/*');
     }, 50);
   }
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file, @Body() body: CreatePhotoDto): Promise<Photo>{
+  async uploadFile(@UploadedFile() file, @Body() body: CreatePhotoDto, @Req() req): Promise<Photo>{
+    body.user = req.user;
     const photo = await this.appService.create(body, file.mimetype);
     this.appService.upload(file, photo);
     return photo;

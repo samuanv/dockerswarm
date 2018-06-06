@@ -9,6 +9,9 @@ import * as SwiftClient from 'openstack-swift-client';
 import * as stream from 'stream';
 import * as fs from 'fs';
 import axios from 'axios';
+
+process.env.SWIFT_URL = process.env.SWIFT_URL || 'localhost:8083';
+
 @Injectable()
 export class AppService {
   constructor(
@@ -28,7 +31,7 @@ export class AppService {
   }
   async upload(file, photo) {
     const client = new SwiftClient(
-      'http://localhost:8083/auth/v1.0',
+      `${process.env.SWIFT_URL}/auth/v1.0`,
       'test:tester',
       'testing',
     );
@@ -51,7 +54,7 @@ export class AppService {
   }
   async getPhoto(photo: Photo) {
     const client = new SwiftClient(
-      'http://localhost:8083/auth/v1.0',
+      `${process.env.SWIFT_URL}/auth/v1.0`,
       'test:tester',
       'testing',
     );

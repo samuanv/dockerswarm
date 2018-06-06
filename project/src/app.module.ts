@@ -13,6 +13,7 @@ process.env.DB_URL = process.env.DB_URL || 'localhost';
   providers: [AppService],
 })
 export class AppModule {
+  // TODO: uncomment
   /*configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(JWT)
