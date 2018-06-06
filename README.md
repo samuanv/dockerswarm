@@ -12,6 +12,7 @@ User = {
     String password
     String rol
 }
+Includes the response from /login endpoint in 'Authorization' header with this format: 'Bearer :tokenGivenFromLogin';
 It connects to the MySQL service.
 
 ## sb-counter (Java - Spring Boot) 8081
@@ -38,7 +39,7 @@ Redis service running on port 6379.
 Swift service running on port 8083
 `docker pull twcammaster.uv.es/swift:latest`
 `docker network create swift`
-`docker -d run -p 8083:8080 -v swift:/srv/node --net=swift twcammaster.uv.es/swift`
+`docker run -d -p 8083:8080 -v swift:/srv/node twcammaster.uv.es/swift`
 `docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\openstack:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
 Inside ocata-cli container:
 `export ST_USER=test:tester export ST_KEY=testing export ST_AUTH=http://<ip-swift-containter>:8080/auth/v1.0`
