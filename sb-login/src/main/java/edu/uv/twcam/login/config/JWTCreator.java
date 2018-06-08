@@ -13,14 +13,14 @@ public class JWTCreator{
    @Value("${expiration.token.time:3600000}")
    private long expiration_time;
 
-   @Value("${secret.token:provideoneatruntime}")
+   @Value("${secret.token}")
    private String secret;
 
    /**
     * @param user logged or registered user to generate JWT
     */
    public String getJWT(Usuario user) {
-	  System.out.println(secret.getBytes());
+	  System.out.println("Taking secret:"+secret);
       String token = Jwts.builder().setSubject(user.getUser()).setIssuer("Fotos")
          .setExpiration(new Date(System.currentTimeMillis() + expiration_time))
          .signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();

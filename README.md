@@ -14,6 +14,10 @@ User = {
 }
 Includes the response from /login endpoint in 'Authorization' header with this format: 'Bearer :tokenGivenFromLogin';
 It connects to the MySQL service.
+Build imager:
+docker build -t sb-login .
+Run Container:
+docker run --name sb-logincontainer -p 8080:8080  -e SECRET_TOKEN=secretlogin sb-login
 
 ## sb-counter (Java - Spring Boot) 8081
 Spring Boot microservice to register likes in pictures.
@@ -21,6 +25,8 @@ Endpoints (see in sb-counter/api-swagger.yaml):
 - POST /increment/{var}
 - POST /decrement/{var}
 It connects to the Redis service.
+Build imager:
+docker build -t sb-counter .
 
 ## sb-photos (Node - NestJS) 8082
 Microservice developed with NestJS (TypeScript) and MongoDB that connects to the MongoDB service and Swift service.
@@ -34,6 +40,7 @@ MongoDB service
 
 ## MySQL service (Dockerized) 3306
 MySQL service running on port 3306.
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
 
 ## Redis service (Dockerized) 6379
 Redis service running on port 6379.
@@ -52,17 +59,17 @@ Ocata Cli:
 
 ## Photo service (Dockerized) 8082
 
-`docker build -t sbphoto .`
-`docker run --name photocont -p 8082:8080  sbphoto`
+`docker build -t sb-photo .`
+`docker run --name photocontainer -p 8082:8080  sb-photo`
 
 
 ## Counter service (Dockerized) 8081
 
-`docker build -t sbcounter .`
-`docker run --name countercont -p 8081:8080  sbcounter`
+`docker build -t sb-counter .`
+`docker run --name countercontainer -p 8081:8080  sb-counter`
 
 
 ## Login service (Dockerized) 8080
 
-`docker build -t sblogin .`
-`docker run --name logincont -p 8080:8080  sblogin`
+`docker build -t sb-login .`
+`docker run --name sb-logincontainer -p 8080:8080  -e SECRET_TOKEN=secretlogin sb-login`
