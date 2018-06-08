@@ -42,6 +42,10 @@ Redis service running on port 6379.
 ## Swift service (Dockerized) 8083
 Swift service running on port 8083
 `docker run -d -p 8083:8080 -v swift:/srv/node twcammaster.uv.es/swift`
+
+Env variables:
+process.env.SWIFT_URL = http://localhost:8083
+process.env.DB_URL= 'mongodb://localhost/photos';
 Ocata Cli:
 `docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\openstack:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
 

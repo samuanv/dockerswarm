@@ -10,7 +10,7 @@ import * as stream from 'stream';
 import * as fs from 'fs';
 import axios from 'axios';
 
-process.env.SWIFT_URL = process.env.SWIFT_URL || 'localhost:8083';
+process.env.SWIFT_URL = process.env.SWIFT_URL || 'http://localhost:8083';
 
 @Injectable()
 export class AppService {
