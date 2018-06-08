@@ -11,8 +11,8 @@ import {
   Param,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Photo } from 'photos/photo.interface';
-import { CreatePhotoDto } from 'photos/create-photo.dto';
+import { Photo } from './photos/photo.interface';
+import { CreatePhotoDto } from './photos/create-photo.dto';
 import { MulterOptions } from '@nestjs/common/interfaces/external/multer-options.interface';
 import * as rimraf from 'rimraf';
 const options: MulterOptions = {
