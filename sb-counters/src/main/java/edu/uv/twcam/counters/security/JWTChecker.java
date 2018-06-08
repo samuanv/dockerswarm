@@ -18,7 +18,7 @@ import io.jsonwebtoken.Jwts;
 
 @Component
 public class JWTChecker implements Filter {
-	@Value("${secret.token:provideoneatruntime}")
+	@Value("${secret.token}")
 	private String secret;
 	
 	public String getToken(HttpServletRequest req) {

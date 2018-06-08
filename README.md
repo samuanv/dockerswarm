@@ -27,6 +27,8 @@ Endpoints (see in sb-counter/api-swagger.yaml):
 It connects to the Redis service.
 Build imager:
 docker build -t sb-counter .
+Build Container:
+docker run --name countercontainer -p 8081:8080  sb-counter
 
 ## sb-photos (Node - NestJS) 8082
 Microservice developed with NestJS (TypeScript) and MongoDB that connects to the MongoDB service and Swift service.
