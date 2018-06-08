@@ -11,8 +11,8 @@ import {
   Param,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Photo } from 'photos/photo.interface';
-import { CreatePhotoDto } from 'photos/create-photo.dto';
+import { Photo } from './photos/photo.interface';
+import { CreatePhotoDto } from './photos/create-photo.dto';
 import { MulterOptions } from '@nestjs/common/interfaces/external/multer-options.interface';
 import * as rimraf from 'rimraf';
 const options: MulterOptions = {
@@ -35,10 +35,10 @@ export class AppController {
     const resp = await this.appService.getPhoto(photo);
     // SetTimeout because of problem returning stream. can't wait to stream for finish
     setTimeout(() => {
-      res.sendFile(__dirname + `/downloads/${photo._id}.${photo.mimetype.split('/')[1]}`);
+      res.sendFile(__dirname + `/${photo._id}.${photo.mimetype.split('/')[1]}`);
 
       // Remove aux files created in downloads folder
-      rimraf(__dirname + '/downloads/*');
+      //rimraf(__dirname + '/downloads/*');
     }, 50);
   }
 

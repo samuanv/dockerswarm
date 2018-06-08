@@ -44,3 +44,21 @@ Swift service running on port 8083
 `docker run -d -p 8083:8080 -v swift:/srv/node twcammaster.uv.es/swift`
 Ocata Cli:
 `docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\openstack:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
+
+
+## Photo service (Dockerized) 8082
+
+`docker build -t sbphoto .`
+`docker run --name photocont -p 8082:8080  sbphoto`
+
+
+## Counter service (Dockerized) 8081
+
+`docker build -t sbcounter .`
+`docker run --name countercont -p 8081:8080  sbcounter`
+
+
+## Login service (Dockerized) 8080
+
+`docker build -t sblogin .`
+`docker run --name logincont -p 8080:8080  sblogin`

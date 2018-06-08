@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Photo } from 'photos/photo.interface';
-import { CreatePhotoDto } from 'photos/create-photo.dto';
+import { Photo } from './photos/photo.interface';
+import { CreatePhotoDto } from './photos/create-photo.dto';
 
 import * as SwiftClient from 'openstack-swift-client';
 import * as stream from 'stream';
@@ -63,7 +63,7 @@ export class AppService {
     const mimetype = photo.mimetype.split('/')[1];
 
     const stream = fs.createWriteStream(
-      __dirname + `/downloads/${photo._id}.${mimetype}`,
+      __dirname + `/${photo._id}.${mimetype}`,
     );
     const response = await container.get(`${photo._id}.${mimetype}`, stream);
     stream.end();
