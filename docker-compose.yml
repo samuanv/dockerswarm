@@ -1,0 +1,51 @@
+version: "3"
+services:
+  login:
+    container_name: sblogin
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mysql
+  counter:
+    container_name: sbcounter
+    restart: always
+    build: .
+    ports:
+      - "8081:8080"
+    links:
+      - redis
+  photos:
+    container_name: sbphoto
+    restart: always
+    build: .
+    ports:
+      - "8082:8080"
+    links:
+      - mongo
+      - swift
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+  swift:
+    container_name: swift
+    image: swift
+    ports:
+      - "8083:8080"
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+  mysql:
+    container_name: mysql
+    image: mysql
+    ports:
+      - "3306:3306"
+volumes:
+  mongodata:
