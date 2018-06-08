@@ -1,0 +1,7 @@
+edu\uv\twcam\login\config\WebSecurityConfig.class
+edu\uv\twcam\login\config\BeanConfig.class
+edu\uv\twcam\login\model\Usuario.class
+edu\uv\twcam\login\config\JWTCreator.class
+edu\uv\twcam\login\model\UsuarioDao.class
+edu\uv\twcam\login\LoginApplication.class
+edu\uv\twcam\login\controller\LoginController.class

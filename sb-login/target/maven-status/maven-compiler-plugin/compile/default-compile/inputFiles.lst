@@ -1,7 +1,7 @@
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\model\Usuario.java
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\config\BeanConfig.java
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\model\UsuarioDao.java
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\controller\LoginController.java
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\LoginApplication.java
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\config\JWTCreator.java
-c:\Users\pandreov\Desktop\TWCAM\CloudComputing\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\config\WebSecurityConfig.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\config\BeanConfig.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\model\UsuarioDao.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\model\Usuario.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\config\JWTCreator.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\controller\LoginController.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\config\WebSecurityConfig.java
+c:\Users\Samuanv\Desktop\Computación en la nube\dockerswarm\sb-login\src\main\java\edu\uv\twcam\login\LoginApplication.java
