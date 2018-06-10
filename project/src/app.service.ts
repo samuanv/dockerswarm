@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpService } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -8,14 +8,13 @@ import { CreatePhotoDto } from './photos/create-photo.dto';
 import * as SwiftClient from 'openstack-swift-client';
 import * as stream from 'stream';
 import * as fs from 'fs';
-import axios from 'axios';
-
 process.env.SWIFT_URL = process.env.SWIFT_URL || 'http://localhost:8083';
 
 @Injectable()
 export class AppService {
   constructor(
     @InjectModel('Photo') private readonly photoModel: Model<Photo>,
+    private readonly httpService: HttpService,
   ) {}
 
   async create(createPhotoDto: CreatePhotoDto, mimetype: string): Promise<Photo> {
@@ -32,8 +31,8 @@ export class AppService {
   async upload(file, photo) {
     const client = new SwiftClient(
       `${process.env.SWIFT_URL}/auth/v1.0`,
-      'test:tester',
-      'testing',
+      process.env.SWIFT_USERNAME, //'test:tester',
+      process.env.SWIFT_PASSWORD, //'testing',
     );
 
     // Create container in swift if doesn't exists

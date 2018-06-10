@@ -7,4 +7,6 @@ export interface Photo extends Document {
   readonly description: string;
   readonly user: string;
   readonly mimetype: string;
+  likes: number;
+  dislikes: number;
 }

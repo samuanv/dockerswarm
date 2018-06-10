@@ -54,22 +54,21 @@ Env variables:
 process.env.SWIFT_URL = http://localhost:8083
 process.env.DB_URL= 'mongodb://localhost/photos';
 Ocata Cli:
-`docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\openstack:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
+`docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\ocata-cli:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
 
 
-## Photo service (Dockerized) 8082
+## Docker machine
+docker-machine --debug --native-ssh create --openstack-username peanvi --openstack-password 20c8bc58 --openstack-tenant-name proyecto4 --openstack-auth-url http://controller:5000/v3 --openstack-flavor-name m1.large --openstack-image-name ubuntu-16-aufs --openstack-net-name red-practica3 --openstack-ssh-user ubuntu --openstack-domain-name Default --openstack-floatingip-pool external-network --driver openstack docker-swarm-manager-g4
 
-`docker build -t sb-photo .`
-`docker run --name photocontainer -p 8082:8080  sb-photo`
+docker-machine --debug --native-ssh provision g4
 
+docker-machine --debug --native-ssh ssh g4
 
-## Counter service (Dockerized) 8081
+]0;ubuntu@g4: ~ubuntu@g4:~$ sudo docker swarm init
+Swarm initialized: current node (0lyi01f7rsfisb0qaucohnd32) is now a manager.
 
-`docker build -t sb-counter .`
-`docker run --name countercontainer -p 8081:8080  sb-counter`
+To add a worker to this swarm, run the following command:
 
+    docker swarm join --token SWMTKN-1-3kz3wmw5u9y6preb8ykwm7yxdo1aje0xjzxuc3m3371t9xhwf4-50i4luh9nk8kwq4q87x1dnzui 10.2.0.3:2377
 
-## Login service (Dockerized) 8080
-
-`docker build -t sb-login .`
-`docker run --name sb-logincontainer -p 8080:8080  -e SECRET_TOKEN=secretlogin sb-login`
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.

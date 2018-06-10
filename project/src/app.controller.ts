@@ -27,7 +27,7 @@ export class AppController {
 
   @Get()
   async findAll(): Promise<Photo[]> {
-    return this.appService.findAll();
+    return await this.appService.findAll();
   }
   @Get(':id')
   async findById(@Res() res, @Param() params): Promise<any> {
@@ -38,7 +38,6 @@ export class AppController {
       res.sendFile(__dirname + `/${photo._id}.${photo.mimetype.split('/')[1]}`);
 
       // Remove aux files created in downloads folder
-      //rimraf(__dirname + '/downloads/*');
     }, 50);
   }
 
