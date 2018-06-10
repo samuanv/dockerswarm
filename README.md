@@ -76,4 +76,17 @@ To add a worker to this swarm, run the following command:
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 
 
-docker stack deploy --compose-file docker-compose.yml g4
+docker stack deploy --compose-file docker-cloud.yml g4
+
+
+---------
+
+
+C:\Users\Samuanv>docker-machine env g4
+SET DOCKER_TLS_VERIFY=1
+SET DOCKER_HOST=tcp://147.156.86.12:2376
+SET DOCKER_CERT_PATH=C:\Users\Samuanv\.docker\machine\machines\g4
+SET DOCKER_MACHINE_NAME=g4
+SET COMPOSE_CONVERT_WINDOWS_PATHS=true
+REM Run this command to configure your shell:
+REM     @FOR /f "tokens=*" %i IN ('docker-machine env g4') DO @%i

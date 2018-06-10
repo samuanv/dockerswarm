@@ -33,7 +33,7 @@ services:
       - SECRET_TOKEN=secreto
       - SWIFT_URL=http://swift:8080
       - SWIFT_USERNAME=test:tester
-      - SWIFT_PASSWORD=testing,
+      - SWIFT_PASSWORD=testing
       - MONGODB_URL=mongodb://mongodb/photo
   redis:
     image: redis
