@@ -72,3 +72,6 @@ To add a worker to this swarm, run the following command:
     docker swarm join --token SWMTKN-1-3kz3wmw5u9y6preb8ykwm7yxdo1aje0xjzxuc3m3371t9xhwf4-50i4luh9nk8kwq4q87x1dnzui 10.2.0.3:2377
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+docker stack deploy --compose-file docker-compose.yml g4
