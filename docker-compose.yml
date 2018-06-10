@@ -19,6 +19,7 @@ services:
       - DB_MYSQL_PW=root
       - WAIT_HOSTS=mysql:3306
       - WAIT_HOSTS_TIMEOUT=120
+<<<<<<< HEAD
   swift:
     image: twcammaster.uv.es/swift
   mongodb:
@@ -48,13 +49,25 @@ services:
       - SECRET_TOKEN=secreto
 
   ##counter:
+=======
+  redis:
+    #container_name: redis
+    image: "redis:alpine"
+    ports:
+      - "6379:6379" 
+  counter:
+>>>>>>> 8fb5d911f487f22a8ae718adb0d7c9424edd4cf2
     #container_name: sbcounter
-    #restart: always
-    #build: .
-    #ports:
-    #  - "8081:8080"
-    #links:
-     # - redis
+    restart: always
+    build: sb-counters
+    ports:
+      - "8081:8090"
+    environment:
+      - REDIS_COUNTERS_SERVICE_HOST=localhost
+      - REDIS_COUNTERS_SERVICE_PORT=6379
+      - SECRET_TOKEN=secreto
+    links:
+      - redis
   #photos:
     #container_name: sbphoto
     #restart: always
@@ -76,8 +89,3 @@ services:
     #image: swift
     #ports:
      # - "8083:8080"
-  #redis:
-   # container_name: redis
-    #image: "redis:alpine"
-    #ports:
-    #  - "6379:6379"
