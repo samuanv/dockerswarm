@@ -1,48 +1,47 @@
 version: "3"
 services:
   mysql:
-    image: mysql:5.7
-    restart: always
+    image: mysql:5.7 # Imagen oficial mysql del hub de docker
     ports:
-      - "3306:3306"
+      - "3306:3306" # Exponemos puerto solo para poder debuggear
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=users
+      - MYSQL_ROOT_PASSWORD=root # Contraseña para root
+      - MYSQL_DATABASE=users # Crear BD users
   login:
-    build: sb-login
+    build: sb-login # Construir imagen desde carpeta
     ports:
       - "8080:8080"
     environment: 
       - SECRET_TOKEN=secreto
-      - DB_MYSQL_DNS=mysql
+      - DB_MYSQL_DNS=mysql # URL del servicio mysql
       - DB_MYSQL_USER=root
       - DB_MYSQL_PW=root
-      - WAIT_HOSTS=mysql:3306
+      - WAIT_HOSTS=mysql:3306  # Variables de entorno para esperar a que el servicio mysql esté listo para aceptar querys
       - WAIT_HOSTS_TIMEOUT=240
   swift:
     image: twcammaster.uv.es/swift
   mongodb:
     image: mongo
     ports:
-      - 27017:27017
+      - 27017:27017 # Exponemos puerto solo para poder debuggear
   photos:
-    build: project
+    build: project # Construir imagen desde carpeta
     ports:
       - 8082:8082
     environment:
       - SECRET_TOKEN=secreto
-      - SWIFT_URL=http://swift:8080
+      - SWIFT_URL=http://swift:8080 # URL del servicio swift
       - SWIFT_USERNAME=test:tester
       - SWIFT_PASSWORD=testing
       - MONGODB_URL=mongodb://mongodb/photo
   redis:
     image: redis
     ports:
-      - 6379:6379
+      - 6379:6379  # Exponemos puerto solo para poder debuggear
   counters:
     build: sb-counters
     ports: 
       - 8081:8081
     environment:
-      - REDIS_COUNTERS_SERVICE_HOST=redis
+      - REDIS_COUNTERS_SERVICE_HOST=redis  # URL del servicio redis
       - SECRET_TOKEN=secreto
