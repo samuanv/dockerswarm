@@ -62,7 +62,7 @@ Ocata Cli:
 docker tag 
 
 ## Docker machine
-docker-machine --native-ssh create --openstack-username peanvi --openstack-password 20c8bc58 --openstack-tenant-name proyecto4 --openstack-auth-url http://controller:5000/v3 --openstack-flavor-name m1.large --openstack-image-name ubuntu-16-aufs --openstack-net-name red-practica3 --openstack-ssh-user ubuntu --openstack-domain-name Default --openstack-floatingip-pool external-network --driver openstack docker-swarm-manager-g4
+docker-machine --native-ssh create --openstack-username peanvi --openstack-password 20c8bc58 --openstack-tenant-name proyecto4 --openstack-auth-url http://controller:5000/v3 --openstack-flavor-name m1.large --openstack-image-name ubuntu-16-aufs --openstack-net-name red-practica3 --openstack-ssh-user ubuntu --openstack-domain-name Default --openstack-floatingip-pool external-network --engine-opt experimental --engine-opt metrics-addr=0.0.0.0:4999 --driver openstack docker-swarm-manager-g4
 
 docker-machine --debug --native-ssh provision g4
 
