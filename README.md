@@ -58,9 +58,11 @@ process.env.DB_URL= 'mongodb://localhost/photos';
 Ocata Cli:
 `docker run -it --name openstack-cli --add-host controller:147.156.84.206 --net=swift -v C:\ocata-cli:/tmp/tempdir twcammaster.uv.es/ocata-cli /bin/bash`
 
+## Image uploads
+docker tag 
 
 ## Docker machine
-docker-machine --debug --native-ssh create --openstack-username peanvi --openstack-password 20c8bc58 --openstack-tenant-name proyecto4 --openstack-auth-url http://controller:5000/v3 --openstack-flavor-name m1.large --openstack-image-name ubuntu-16-aufs --openstack-net-name red-practica3 --openstack-ssh-user ubuntu --openstack-domain-name Default --openstack-floatingip-pool external-network --driver openstack docker-swarm-manager-g4
+docker-machine --native-ssh create --openstack-username peanvi --openstack-password 20c8bc58 --openstack-tenant-name proyecto4 --openstack-auth-url http://controller:5000/v3 --openstack-flavor-name m1.large --openstack-image-name ubuntu-16-aufs --openstack-net-name red-practica3 --openstack-ssh-user ubuntu --openstack-domain-name Default --openstack-floatingip-pool external-network --driver openstack docker-swarm-manager-g4
 
 docker-machine --debug --native-ssh provision g4
 

@@ -1,47 +1,54 @@
-version: "3"
+version: "3.3"
 services:
   mysql:
-    image: mysql:5.7 # Imagen oficial mysql del hub de docker
-    ports:
-      - "3306:3306" # Exponemos puerto solo para poder debuggear
+    image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=root # Contraseña para root
-      - MYSQL_DATABASE=users # Crear BD users
+      - MYSQL_ROOT_PASSWORD=superSecretPW
+      - MYSQL_DATABASE=users
+    networks:
+      - network_g4 
   login:
-    build: sb-login # Construir imagen desde carpeta
+    build: sb-login
     ports:
       - "8080:8080"
-    environment: 
-      - SECRET_TOKEN=secreto
-      - DB_MYSQL_DNS=mysql # URL del servicio mysql
-      - DB_MYSQL_USER=root
-      - DB_MYSQL_PW=root
-      - WAIT_HOSTS=mysql:3306  # Variables de entorno para esperar a que el servicio mysql esté listo para aceptar querys
-      - WAIT_HOSTS_TIMEOUT=240
+    networks:
+      - network_g4
+    configs:
+      - my_config
   swift:
     image: twcammaster.uv.es/swift
+    networks:
+      - network_g4
   mongodb:
     image: mongo
-    ports:
-      - 27017:27017 # Exponemos puerto solo para poder debuggear
+    networks:
+      - network_g4
   photos:
-    build: project # Construir imagen desde carpeta
+    build: project
     ports:
       - 8082:8082
     environment:
-      - SECRET_TOKEN=secreto
-      - SWIFT_URL=http://swift:8080 # URL del servicio swift
+      - SECRET_TOKEN=secretSwarmSalt
+      - SWIFT_URL=http://swift:8080
       - SWIFT_USERNAME=test:tester
       - SWIFT_PASSWORD=testing
       - MONGODB_URL=mongodb://mongodb/photo
+    networks:
+      - network_g4
   redis:
     image: redis
-    ports:
-      - 6379:6379  # Exponemos puerto solo para poder debuggear
+    networks:
+      - network_g4
   counters:
     build: sb-counters
     ports: 
-      - 8081:8081
-    environment:
-      - REDIS_COUNTERS_SERVICE_HOST=redis  # URL del servicio redis
-      - SECRET_TOKEN=secreto
+      - 8081:8090
+    networks:
+      - network_g4
+    configs:
+      - my_config
+networks:
+  network_g4:
+configs:
+  my_config:
+    file: ./application.properties

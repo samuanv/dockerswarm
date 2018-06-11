@@ -31,8 +31,8 @@ export class AppService {
   async upload(file, photo) {
     const client = new SwiftClient(
       `${process.env.SWIFT_URL}/auth/v1.0`,
-      process.env.SWIFT_USERNAME, //'test:tester',
-      process.env.SWIFT_PASSWORD, //'testing',
+      process.env.SWIFT_USERNAME,
+      process.env.SWIFT_PASSWORD,
     );
 
     // Create container in swift if doesn't exists

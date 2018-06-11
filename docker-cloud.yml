@@ -1,42 +1,57 @@
-version: "3"
+version: "3.3"
 services:
   mysql:
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=superSecretPW
       - MYSQL_DATABASE=users
+      
+    networks:
+      - network_g4
   login:
     image: twcammaster.uv.es/login_g4
     ports:
       - "8080:8080"
-    environment: 
-      - SECRET_TOKEN=secreto
-      - DB_MYSQL_DNS=mysql
-      - DB_MYSQL_USER=root
-      - DB_MYSQL_PW=root
-      - WAIT_HOSTS=mysql:3306
-      - WAIT_HOSTS_TIMEOUT=120
+    networks:
+      - network_g4
+    configs:
+      - application.properties
   swift:
     image: twcammaster.uv.es/swift
+    networks:
+      - network_g4
   mongodb:
     image: mongo
+    networks:
+      - network_g4
   photos:
     image: twcammaster.uv.es/photos_g4
     ports:
       - 8082:8082
     environment:
-      - SECRET_TOKEN=secreto
+      - SECRET_TOKEN=secretSwarmSalt
       - SWIFT_URL=http://swift:8080
       - SWIFT_USERNAME=test:tester
       - SWIFT_PASSWORD=testing
       - MONGODB_URL=mongodb://mongodb/photo
+    networks:
+      - network_g4
   redis:
     image: redis
+    networks:
+      - network_g4
   counters:
     image: twcammaster.uv.es/counters_g4
     ports: 
       - 8081:8090
-    environment:
-      - REDIS_COUNTERS_SERVICE_HOST=redis
-      - SECRET_TOKEN=secreto
+    networks:
+      - network_g4
+    configs:
+      - application.properties
 
+networks:
+  network_g4:
+
+configs:
+  application.properties:
+    file: application.properties
