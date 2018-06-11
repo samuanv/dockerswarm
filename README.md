@@ -42,7 +42,7 @@ MongoDB service
 
 ## MySQL service (Dockerized) 3306
 MySQL service running on port 3306.
-docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=users -d mysql:5.7
 
 ## Redis service (Dockerized) 6379
 Redis service running on port 6379.
@@ -90,3 +90,13 @@ SET DOCKER_MACHINE_NAME=g4
 SET COMPOSE_CONVERT_WINDOWS_PATHS=true
 REM Run this command to configure your shell:
 REM     @FOR /f "tokens=*" %i IN ('docker-machine env g4') DO @%i
+
+
+docker service create --name=viz --publish=9000:8080/tcp --constraint=node.role==manager --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock dockersamples/visualizer
+
+
+docker service scale g4_counters=2
+
+
+
+https://github.com/bvis/docker-prometheus-swarm
