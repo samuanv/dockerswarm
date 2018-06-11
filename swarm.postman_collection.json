@@ -1,0 +1,177 @@
+{
+	"variables": [],
+	"info": {
+		"name": "swarm",
+		"_postman_id": "40d18f51-b2f9-0e3b-353c-3a1b3d1e67f9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All photos",
+			"request": {
+				"url": "localhost:8082/photo",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenSwarm}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Upload photo",
+			"request": {
+				"url": "localhost:8082/photo",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenSwarm}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Photo1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Photo1Description",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "travel4.png"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get photo",
+			"request": {
+				"url": "localhost:8082/photo/5b1bfdbd21e42d0010a6910d",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenSwarm}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get likes from photo",
+			"request": {
+				"url": "{{swarmurl}}:8081/get/5b1d6e4bd6f7630010496827",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenSwarm}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Like photo",
+			"request": {
+				"url": "localhost:8081/increment/5b1bfdbd21e42d0010a6910d",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenSwarm}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Dislike photo",
+			"request": {
+				"url": "localhost:8081/decrement/5b1bfdbd21e42d0010a6910d",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenSwarm}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var token = responseBody;",
+							"postman.setEnvironmentVariable('tokenSwarm', token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{swarmurl}}:8080/register",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user\":\"user\",\n\"password\":\"pw\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
